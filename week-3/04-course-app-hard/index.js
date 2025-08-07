@@ -8,7 +8,7 @@ const jwtKey = "C@nBi-WWKTVZywQ4QNv.";
 
 const bcrypt = require("bcrypt");
 
-const uri = "mongodb://snehansh:Sneh%401987@localhost:27017/?authSource=admin";
+const uri = "mongodb://usernm:pwd@localhost:27017/?authSource=admin";
 
 const client = new MongoClient(uri);
 
@@ -216,11 +216,9 @@ app.get("/users/purchasedCourses", authentication, async (req, res) => {
     const purchasedCourses = await courses.find({ purchased: true }).toArray();
     return res.status(200).send({ purchasedCourses });
   } catch (error) {
-    return res
-      .status(500)
-      .send({
-        message: `Failed to get purchased courses with error: ${error}`,
-      });
+    return res.status(500).send({
+      message: `Failed to get purchased courses with error: ${error}`,
+    });
   }
 });
 
